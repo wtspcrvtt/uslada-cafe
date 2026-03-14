@@ -72,14 +72,6 @@ if (bookingForm) {
     bookingForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // Показываем сообщение о загрузке
-        if (formMessage) {
-            formMessage.style.display = 'block';
-            formMessage.textContent = '⏳ Отправка...';
-            formMessage.style.backgroundColor = '#e3f2fd';
-            formMessage.style.color = '#0d47a1';
-        }
-        
         // ВАЛИДАЦИЯ
         const nameInput = bookingForm.querySelector('input[name="name"]');
         const phoneInput = bookingForm.querySelector('input[name="phone"]');
@@ -88,84 +80,75 @@ if (bookingForm) {
         const guestsSelect = bookingForm.querySelector('select[name="guests"]');
         
         if (!nameInput.value.trim()) {
-            if (formMessage) {
-                formMessage.textContent = '❌ Пожалуйста, введите имя';
-                formMessage.style.backgroundColor = '#f8d7da';
-                formMessage.style.color = '#721c24';
-                setTimeout(() => { formMessage.style.display = 'none'; }, 3000);
-            }
+            alert('Пожалуйста, введите имя');
             nameInput.focus();
             return;
         }
         
         if (!phoneInput.value.trim()) {
-            if (formMessage) {
-                formMessage.textContent = '❌ Пожалуйста, введите телефон';
-                formMessage.style.backgroundColor = '#f8d7da';
-                formMessage.style.color = '#721c24';
-                setTimeout(() => { formMessage.style.display = 'none'; }, 3000);
-            }
+            alert('Пожалуйста, введите телефон');
             phoneInput.focus();
             return;
         }
         
-        // Собираем данные в FormData
-        const formData = new FormData();
-        formData.append('name', nameInput.value.trim());
-        formData.append('phone', phoneInput.value.trim());
-        formData.append('date', dateInput.value);
-        formData.append('time', timeInput.value);
-        formData.append('guests', guestsSelect.value);
-        
-        // ОТЛАДКА: посмотри в консоли, что отправляется
-        console.log('Отправляю данные:');
-        for (let pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
+        // Показываем сообщение о загрузке
+        if (formMessage) {
+            formMessage.style.display = 'block';
+            formMessage.textContent = '⏳ Отправка...';
+            formMessage.style.backgroundColor = '#e3f2fd';
+            formMessage.style.color = '#0d47a1';
         }
         
         try {
-            // ⚠️ ЗАМЕНИ НА СВОЙ URL ВОРКЕРА
-            const WORKER_URL = 'https://uslada-bot.lenya-stepanov-07.workers.dev';
+            // 👇 ВСТАВЬ СЮДА СВОЙ URL ИЗ APPS SCRIPT
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyI34_mwVbTkSNcoItuHUM4xTYAr7Y6xjgpBMb2uD32muXz9QEx2hu92DYPGTm9LEK_sQ/exec';
             
-            console.log('Отправка на:', WORKER_URL);
+            // Собираем данные
+            const formData = {
+                name: nameInput.value.trim(),
+                phone: phoneInput.value.trim(),
+                date: dateInput.value,
+                time: timeInput.value,
+                guests: guestsSelect.value
+            };
             
-            const response = await fetch(WORKER_URL, {
+            console.log('Отправляю:', formData);
+            
+            // Отправляем в Google Apps Script
+            const response = await fetch(SCRIPT_URL, {
                 method: 'POST',
-                body: formData
+                mode: 'no-cors',  // Важно для Google Script!
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
             });
             
-            console.log('Статус ответа:', response.status);
+            // Из-за no-cors мы не можем прочитать ответ,
+            // но запрос ушёл!
             
-            const result = await response.json();
-            console.log('Ответ сервера:', result);
-            
-            if (result.success) {
-                if (formMessage) {
-                    formMessage.textContent = '✅ Спасибо! Заявка отправлена. Мы скоро перезвоним.';
-                    formMessage.style.backgroundColor = '#d4edda';
-                    formMessage.style.color = '#155724';
-                }
-                bookingForm.reset();
-                
-                // Скрываем сообщение через 5 секунд
-                setTimeout(() => {
-                    if (formMessage) formMessage.style.display = 'none';
-                }, 5000);
-            } else {
-                throw new Error(result.error || 'Неизвестная ошибка');
+            if (formMessage) {
+                formMessage.textContent = '✅ Спасибо! Заявка отправлена. Мы скоро перезвоним.';
+                formMessage.style.backgroundColor = '#d4edda';
+                formMessage.style.color = '#155724';
             }
+            
+            // Очищаем форму
+            bookingForm.reset();
+            
         } catch (error) {
             console.error('Ошибка:', error);
             if (formMessage) {
-                formMessage.textContent = '❌ Ошибка: ' + error.message;
+                formMessage.textContent = '❌ Ошибка при отправке. Позвоните нам: +7 (999) 123-45-67';
                 formMessage.style.backgroundColor = '#f8d7da';
                 formMessage.style.color = '#721c24';
-                
-                setTimeout(() => {
-                    if (formMessage) formMessage.style.display = 'none';
-                }, 5000);
             }
         }
+        
+        // Скрываем сообщение через 5 секунд
+        setTimeout(() => {
+            if (formMessage) formMessage.style.display = 'none';
+        }, 5000);
     });
 }
 
