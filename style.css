@@ -657,6 +657,58 @@ select.form-input {
     transition: all 0.3s;
 }
 
+/* ===== SEO-БЛОК ===== */
+.seo-section {
+    padding: 80px 0;
+    background-color: var(--bg-primary);
+}
+
+.seo-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.seo-text {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--text-light);
+}
+
+.seo-text p {
+    margin-bottom: 20px;
+}
+
+.seo-text ul {
+    margin: 20px 0 30px 20px;
+    list-style-type: disc;
+}
+
+.seo-text li {
+    margin-bottom: 12px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.seo-text strong {
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+.seo-text a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+    .seo-text {
+        font-size: 16px;
+    }
+    
+    .seo-text li {
+        font-size: 16px;
+    }
+}
+
+
 @media (max-width: 1439px) {
     :root {
         --margin-side: 60px;
