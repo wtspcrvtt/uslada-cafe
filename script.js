@@ -197,22 +197,67 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// ===== ЗАГРУЗКА НОВОСТЕЙ =====
 async function loadNews() {
     try {
         const container = document.getElementById('news-container');
-        container.innerHTML = 'Проверка соединения...';
-        
+        if (!container) return;
+
+        container.innerHTML = '<div style="text-align: center; padding: 40px;">⏳ Загрузка новостей...</div>';
+
+        // ID твоей опубликованной таблицы
         const SHEET_ID = '2PACX-1vQHBkZfhFacteoqo59DFY3_E_9-hH17BDmYRQ_Cn_BfsZJitnnL8kYX0zyq0V3H8jxznfX_QZEQxQMR';
+        
+        // Получаем CSV-версию таблицы
         const url = `https://docs.google.com/spreadsheets/d/e/${SHEET_ID}/pubhtml?gid=0&single=true&output=csv`;
-        
+
         const response = await fetch(url);
-        const text = await response.text();
-        
-        // Просто показываем, что пришло
-        container.innerHTML = '<pre style="text-align: left; background: #f0f0f0; padding: 10px;">' + text + '</pre>';
-        
+        const csvText = await response.text();
+
+        // Разбираем CSV в массив строк
+        const rows = csvText.split('\n').map(row => 
+            row.split(',').map(cell => 
+                cell.replace(/^"|"$/g, '').trim()  // убираем кавычки и пробелы
+            )
+        );
+
+        // Убираем первую строку с заголовками
+        const dataRows = rows.slice(1);
+
+        if (dataRows.length === 0) {
+            container.innerHTML = '<div style="text-align: center; padding: 60px;">📰 Пока нет новостей</div>';
+            return;
+        }
+
+        container.innerHTML = '';
+
+        // Берём последние 3 новости (свежие сверху)
+        const lastThree = dataRows.slice(-3).reverse();
+
+        lastThree.forEach(row => {
+            // Убеждаемся, что у нас есть хотя бы 3 колонки
+            const date = row[0] || 'Дата';
+            const title = row[1] || 'Заголовок';
+            const content = row[2] || '';
+
+            const article = document.createElement('article');
+            article.className = 'news-card';
+            article.innerHTML = `
+                <div class="news-card__date">${date}</div>
+                <h3 class="news-card__title">${title}</h3>
+                <p class="news-card__text">${content}</p>
+            `;
+            container.appendChild(article);
+        });
+
     } catch (error) {
-        container.innerHTML = 'Ошибка: ' + error.message;
+        console.error('Ошибка загрузки новостей:', error);
+        const container = document.getElementById('news-container');
+        if (container) {
+            container.innerHTML = '<div style="text-align: center; padding: 60px;">❌ Не удалось загрузить новости</div>';
+        }
     }
 }
+document.addEventListener('DOMContentLoaded', loadNews);
+
+// Обновляем новости каждые 3 минуты (180000 миллисекунд)
+setInterval(loadNews, 180000);
