@@ -68,7 +68,11 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.3s ease;
     cursor: pointer;
     border: none;
-    text-align: center;
+    text-align: center;    
+}
+
+.btn--menu {
+    margin-bottom: 48px;
 }
 
 .btn--primary {
@@ -595,6 +599,54 @@ select.form-input {
 .scroll-to-top:hover {
     background-color: var(--accent-dark);
     transform: translateY(-3px);
+}
+
+.callback-form {
+    width: 100%;
+}
+
+.callback-form .form-row {
+    margin-bottom: 15px;
+}
+
+.callback-form .form-input {
+    width: 100%;
+    height: 50px;
+    padding: 0 16px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-sm);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.callback-form .form-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.callback-form .form-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Маленький текст под заголовком */
+.footer__booking p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* Сообщение об успехе/ошибке */
+#formMessage {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    text-align: center;
+    transition: all 0.3s;
 }
 
 @media (max-width: 1439px) {

@@ -396,7 +396,7 @@
             </div>
 
             <div class="menu__footer">
-                <a href="files/menu-kafe-uslada.pdf" class="btn btn--outline" download>
+                <a href="files/menu-kafe-uslada.pdf" class="btn btn--menu btn--outline" download>
                     <i class="fas fa-file-pdf" style="margin-right: 8px;"></i>
                     Скачать полное меню (PDF)
                 </a>
@@ -430,25 +430,9 @@
     <section id="news" class="news-section">
         <div class="container">
             <h2 class="section-title">Новости и акции</h2>
-            <div class="news__grid">
-                <!-- новость 1 -->
-                 <article class="news-card">
-                    <div class="news-card__date">15 марта 2026</div>
-                    <h3 class="news-card__title">Дегустация медовухи</h3>
-                    <p class="news-card__text">Приглашаем на дегустацию медовухи от местных производителей. В программе: 5 сортов медовухи, закуски и живая музыка.</p>
-                 </article>
-                 <!-- новость 2 -->
-                 <article class="news-card">
-                    <div class="news-card__date">Каждую пятницу</div>
-                    <h3 class="news-card__title">Живая музыка</h3>
-                    <p class="news-card__text">Каждую пятницу и субботу в нашем кафе выступают музыканты. Наслаждайтесь ужином под живой джаз</p>
-                 </article>
-                 <!-- новость 3 -->
-                  <article class="news-card">
-                    <div class="news-card__date">Весеннее предложение</div>
-                    <h3 class="news-card__title">Скидка 20% на десерты</h3>
-                    <p class="news-card__text">С 15:00 до 17:00 скидка 20% на все десерты. Идеальное время для сладкого перерыва.</p>
-                 </article>
+            <div class="news__grid" id="news-container">
+            <!-- Новости будут загружаться сюда через JavaScript -->
+            <div style="text-align: center; padding: 40px; color: #999;">⏳ Загрузка новостей...</div>
             </div>
         </div>
     </section>
@@ -457,31 +441,24 @@
         <div class="container">
             <div class="footer__grid">
                 <div class="footer__booking">
-                    <h3 class="footer__title">Забронировать столик</h3>
-                    <form class="booking-form" id="bookingForm">
-                        <!-- ВАЖНО: добавь name атрибуты к полям -->
+                    <h3 class="footer__title">Заказать звонок</h3>
+                    <p style="margin-bottom: 20px; opacity: 0.9; font-size: 15px;">Оставьте телефон — мы перезвоним через 5 минут</p>
+                    
+                    <form class="callback-form" id="callbackForm">
+
                         <div class="form-row">
-                            <input type="text" name="name" class="form-input" placeholder="Ваше имя" required>
-                            <input type="tel" name="phone" class="form-input" placeholder="Телефон *" required>
+                            <input type="text" name="name" class="form-input" placeholder="Ваше имя (необязательно)">
+                        </div>    
+                        
+                        <div class="form-row">
+                            <input type="tel" name="phone" class="form-input" placeholder="+7 (999) 123-45-67" required>
                         </div>
                         <div class="form-row">
-                            <input type="date" name="date" class="form-input" required>
-                            <input type="time" name="time" class="form-input" required>
-                        </div>
-                        <div class="form-row">
-                            <select name="guests" class="form-input">
-                                <option>1 гость</option>
-                                <option>2 гостя</option>
-                                <option>3-4 гостя</option>
-                                <option>5-6 гостей</option>
-                                <option>Более 6</option>
-                            </select>
-                            <button type="submit" class="btn btn--primary btn--block">Забронировать</button>
+                            <button type="submit" class="btn btn--primary btn--block">Заказать звонок</button>
                         </div>
                     </form>
 
-                    <!-- Добавь блок для сообщения об успехе/ошибке -->
-                    <div id="formMessage" style="display: none; margin-top: 15px; padding: 10px; border-radius: 8px;"></div>
+                    <div id="formMessage" style="display: none; margin-top: 15px; padding: 10px; border-radius: 8px; text-align: center;"></div>
                 </div>
 
                 <div class="footer__contacts">
