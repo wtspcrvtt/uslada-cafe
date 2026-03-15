@@ -201,58 +201,18 @@ document.addEventListener('DOMContentLoaded', function() {
 async function loadNews() {
     try {
         const container = document.getElementById('news-container');
-        if (!container) return;
-        
-        container.innerHTML = '<div style="text-align: center; padding: 40px;">⏳ Загрузка новостей...</div>';
+        container.innerHTML = 'Проверка соединения...';
         
         const SHEET_ID = '2PACX-1vQHBkZfhFacteoqo59DFY3_E_9-hH17BDmYRQ_Cn_BfsZJitnnL8kYX0zyq0V3H8jxznfX_QZEQxQMR';
         const url = `https://docs.google.com/spreadsheets/d/e/${SHEET_ID}/pubhtml?gid=0&single=true&output=csv`;
         
         const response = await fetch(url);
-        const csvText = await response.text();
+        const text = await response.text();
         
-        // Парсим CSV
-        const rows = csvText.split('\n')
-            .filter(row => row.trim())
-            .map(row => row.split(',').map(cell => cell.replace(/^"|"$/g, '')));
-        
-        // Пропускаем заголовок (если есть)
-        const dataRows = rows.slice(1);
-        
-        if (dataRows.length === 0) {
-            container.innerHTML = '<div style="text-align: center; padding: 60px;">📰 Пока нет новостей</div>';
-            return;
-        }
-        
-        container.innerHTML = '';
-        
-        // Берём последние 3
-        const lastThree = dataRows.slice(-3).reverse();
-        
-        lastThree.forEach(row => {
-            const date = row[0] || 'Дата';
-            const title = row[1] || 'Заголовок';
-            const content = row[2] || '';
-            
-            const article = document.createElement('article');
-            article.className = 'news-card';
-            article.innerHTML = `
-                <div class="news-card__date">${date}</div>
-                <h3 class="news-card__title">${title}</h3>
-                <p class="news-card__text">${content}</p>
-            `;
-            container.appendChild(article);
-        });
+        // Просто показываем, что пришло
+        container.innerHTML = '<pre style="text-align: left; background: #f0f0f0; padding: 10px;">' + text + '</pre>';
         
     } catch (error) {
-        console.error('Ошибка:', error);
-        const container = document.getElementById('news-container');
-        if (container) {
-            container.innerHTML = '<div style="text-align: center; padding: 60px;">❌ Ошибка загрузки</div>';
-        }
+        container.innerHTML = 'Ошибка: ' + error.message;
     }
 }
-
-// Загружаем при старте и каждые 5 минут
-document.addEventListener('DOMContentLoaded', loadNews);
-setInterval(loadNews, 5 * 60 * 1000);
