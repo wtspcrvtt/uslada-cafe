@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width", initial-scale="1.0">
     <title>Услада - кафе в Городце</title>
+    <meta name="description" content="Кафе Услада расположено в уникальном историческом месте туристического и старинного города Городца, всего в часе езды на автомобиле или валдае от Нижнего Новгорода."
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
@@ -51,11 +52,13 @@
         </div>
     </section>
 
-    <section id="menu" class="menu-setion">
+    <section id="menu" class="menu-section">
         <div class="container">
             <h2 class="section-title section-title-menu">Наше меню</h2>
 
-            <div class="menu-category">
+                    <!-- Завтраки -->
+
+            <div id="breakfast" class="menu-category">
                 <div class="menu-category__title-wrapper">
                     <h3 class="menu-category__title">Завтраки</h3>
                 </div>
@@ -123,7 +126,9 @@
                 </div>
             </div>
 
-            <div class="menu-category">
+                        <!-- Салаты -->
+
+            <div id="salad" class="menu-category">
                 <div class="menu-category__title-wrapper">
                     <h3 class="menu-category__title">Салаты</h3>
                 </div>
@@ -191,7 +196,9 @@
                 </div>
             </div>
 
-            <div class="menu-category">
+                        <!-- Горячее -->
+
+            <div id="lunch" class="menu-category">
                 <div class="menu-category__title-wrapper">
                     <h3 class="menu-category__title">Горячее</h3>
                 </div>
@@ -259,7 +266,9 @@
                 </div>
             </div>
 
-            <div class="menu-category">
+                                <!-- Десерты -->
+
+            <div id="dessert" class="menu-category">
                 <div class="menu-category__title-wrapper">
                     <h3 class="menu-category__title">Десерты</h3>
                 </div>
@@ -327,7 +336,9 @@
                 </div>
             </div>
 
-            <div class="menu-category">
+                                <!-- Напитки -->
+
+            <div id="drinks" class="menu-category">
                 <div class="menu-category__title-wrapper">
                     <h3 class="menu-category__title">Напитки</h3>
                 </div>
@@ -432,29 +443,59 @@
         <div class="container">
             <div class="seo-content">
                 <h2 class="section-title">Кафе «Услада» на Церемоновом болоте в Городце</h2>
+                
                 <div class="seo-text">
                     <p>Приглашаем вас в уютное кафе «Услада» в самом сердце Городца — у живописного Церемонова болота. Это душевное семейное место с завораживающим видом на пруд: здесь можно отдохнуть от городской суеты и насладиться атмосферой настоящего русского гостеприимства.</p>
                     
-                    <p>Кафе расположилось в историческом центре Городца — неподалёку от знаковых достопримечательностей: музея «Городецкий пряник», комплекса «Город мастеров» и уютной набережной. Летом к вашим услугам — просторная веранда с видом на воду: идеальный уголок для отдыха в тёплую погоду. Территория вокруг кафе благоустроена, есть удобная парковка — добраться и разместиться будет легко. Кстати, знаете ли вы, что когда‑то на месте кафе был первый каток Городца, ещё в XIX веке?</p>
+                    <p>Кафе находится в историческом центре, рядом с музеем «Городецкий пряник», комплексом «Город мастеров» и набережной. Летом работает веранда с видом на воду, есть удобная парковка. Кстати, когда‑то здесь был первый каток Городца — ещё в XIX веке!</p>
                     
                     <p><strong>В меню — домашняя кухня на любой вкус:</strong></p>
                     
-                    <ul>
-                        <li><strong>Завтраки:</strong> сырники, блины, разнообразные каши — отлично подойдут для бодрого начала дня.</li>
-                        <li><strong>Домашние обеды:</strong> борщ, солянка, жаркое — сытно и по‑домашнему вкусно.</li>
-                        <li><strong>Фирменные блюда:</strong> судак по‑городецки, рыба хрустящая, скоблянка — попробуйте местные гастрономические хиты.</li>
-                        <li><strong>Десерты:</strong> городецкие пряники, медовик, чизкейк — сладкое завершение трапезы.</li>
-                        <li><strong>Напитки:</strong> ароматный Иван‑чай, домашние наливки, освежающий морс, кофе — выберите то, что по душе.</li>
-                    </ul>
+                    <div class="menu-two-columns">
+                        <div class="menu-column">
+                            <div class="menu-item-icon">
+                                <i class="fas fa-egg"></i>
+                                <div><a class="nav__link" href="#breakfast"<strong>Завтраки:</strong></a> сырники, блины, каши</div>
+                            </div>
+                            <div class="menu-item-icon">
+                                <i class="fas fa-utensils"></i>
+                                <div><a class="nav__link" href="#lunch"<strong>Домашние обеды:</strong></a> борщ, солянка, жаркое</div>
+                            </div>
+                            <div class="menu-item-icon">
+                                <i class="fas fa-fish"></i>
+                                <div><a class="nav__link" href="#lunch"<strong>Фирменные блюда:</strong></a> судак по‑городецки, рыба хрустящая, скоблянка</div>
+                            </div>
+                        </div>
+                        <div class="menu-column">
+                            <div class="menu-item-icon">
+                                <i class="fas fa-cake-candles"></i>
+                                <div><a class="nav__link" href="#dessert"<strong>Десерты:</strong></a> городецкие пряники, медовик, чизкейк</div>
+                            </div>
+                            <div class="menu-item-icon">
+                                <i class="fas fa-mug-hot"></i>
+                                <div><a class="nav__link" href="#drinks"<strong>Напитки:</strong></a> Иван-чай, домашние наливки, морс, кофе</div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <p>Интерьер кафе выполнен в русском стиле: тепло, уютно и по‑домашнему. Особая гордость — фотозона с настоящей печью, где можно сделать памятные снимки. Чистота, приветливый персонал и душевная атмосфера делают «Усладу» отличным местом для семейного отдыха, романтических свиданий и встреч туристических групп.</p>
                     
-                    <p><strong>Контактная информация:</strong></p>
-                    <p>📍 Адрес: г. Городец, пер. А. Рублёва, 1.<br>
-                    🕒 Часы работы: ежедневно с 10:00 до 22:00.<br>
-                    📞 Телефон: <a href="tel:+79601917434" style="color: var(--accent-primary); text-decoration: none;">+7 (960) 191‑74‑34</a>.</p>
+                    <div class="contact-info-block">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>г. Городец, пер. А. Рублёва, 1</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="far fa-clock"></i>
+                            <span>Ежедневно с 10:00 до 22:00</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-volume"></i>
+                            <span><a href="tel:+79601917434" class="contact-phone">+7 (960) 191‑74‑34</a></span>
+                        </div>
+                    </div>
                     
-                    <p><strong>Ждём вас в гости в кафе «Услада»!</strong> Приходите с семьёй и друзьями — мы позаботимся о вашем комфорте и отличном настроении. Хотите уточнить детали или забронировать столик? Звоните — будем рады помочь!</p>
+                    <p class="call-to-action"><strong>Ждём вас в гости!</strong> Бронируйте столик по телефону или закажите звонок через форму на сайте.</p>
                 </div>
             </div>
         </div>
@@ -521,7 +562,6 @@
 
             <div class="footer__bottom">
                 <p>© 2026 Кафе "Услада", Городец</p>
-                <a href="#top" class="back-to-top desctop-hidden">↑ Наверх</a>
             </div>
         </div>
     </footer>

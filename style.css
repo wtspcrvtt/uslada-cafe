@@ -690,12 +690,243 @@ select.form-input {
 }
 
 .seo-text strong {
-    color: var(--accent-primary);
+    color: var(--text-dark);
     font-weight: 600;
 }
 
 .seo-text a:hover {
+    text-decoration: none;
+}
+
+.contact-info-block {
+    margin: 30px 0 20px;
+    padding: 20px;
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--accent-primary);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.contact-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-item i {
+    width: 28px;
+    font-size: 22px;
+    color: var(--accent-primary);
+    text-align: center;
+}
+
+.contact-item span {
+    flex: 1;
+}
+
+.contact-item a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-item a:hover {
+    color: var(--accent-dark);
     text-decoration: underline;
+}
+
+.menu-two-columns {
+    display: flex;
+    gap: 40px;
+    margin: 25px 0 30px;
+    flex-wrap: wrap;
+}
+
+.menu-column {
+    flex: 1;
+    min-width: 200px;
+}
+
+.menu-column ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.menu-column li {
+    margin-bottom: 12px;
+    font-size: 18px;
+    line-height: 1.5;
+    padding-left: 0;
+}
+
+.menu-column li strong {
+    color: var(--accent-primary);
+}
+
+.menu-item-icon {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.menu-item-icon i {
+    width: 28px;
+    font-size: 20px;
+    color: var(--accent-primary);
+    margin-top: 2px;
+}
+
+.menu-item-icon strong {
+    color: var(--accent-primary);
+}
+
+.menu-item-icon div {
+    flex: 1;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.menu-two-columns {
+    display: flex;
+    gap: 40px;
+    margin: 25px 0 30px;
+    flex-wrap: wrap;
+}
+
+.menu-column {
+    flex: 1;
+    min-width: 240px;
+}
+
+@media (max-width: 768px) {
+    .menu-two-columns {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+/* ===== КОНТАКТЫ С ИКОНКАМИ ===== */
+.contact-info-block {
+    margin: 30px 0 25px;
+    padding: 20px 25px;
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--accent-primary);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.contact-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-item i {
+    width: 28px;
+    font-size: 20px;
+    color: var(--accent-primary);
+    text-align: center;
+}
+
+.contact-item a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+}
+
+/* ===== ПРИЗЫВ К ДЕЙСТВИЮ ===== */
+.call-to-action {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 18px;
+}
+
+/* ===== ДЕКОРАТИВНЫЕ PNG-ЭЛЕМЕНТЫ (огромные, адаптивные) ===== */
+.menu-section,
+.gallery-section,
+.seo-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-section::after,
+.seo-section::after,
+.gallery-section::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    /* 👇 главное изменение: ширина в процентах от экрана */
+    width: min(1000px, 90vw);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    background-image: url('images/gorodets-element.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* МЕНЮ и SEO — справа */
+.menu-section::after,
+.seo-section::after {
+    right: -35vw; /* вылетает на 15% ширины экрана */
+    width: 70vw;  /* ширина = 70% экрана */
+}
+
+.gallery-section::before {
+    left: -35vw;
+    width: 70vw;
+}
+
+
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 768px) {
+    .menu-two-columns {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .menu-column:first-child {
+        margin-bottom: 10px;
+    }
+    
+    .contact-item {
+        font-size: 16px;
+        flex-wrap: wrap;
+    }
+    
+    .contact-item i {
+        width: 24px;
+        font-size: 18px;
+    }
+
+    .menu-section::after,
+    .seo-section::after,
+    .gallery-section::before {
+        display: none;
+    }
 }
 
 @media (max-width: 767px) {
