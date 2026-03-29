@@ -137,6 +137,17 @@ h1, h2, h3, h4, h5, h6 {
     gap: 40px;
 }
 
+.nav__seo-color {
+    text-decoration: none;
+    color: var(--accent-primary);
+    font-weight: 500;
+    transition: color 0.3s ;
+}
+
+.nav__seo-color:hover {
+    color: var(--accent-dark);
+}
+
 .nav__link {
     text-decoration: none;
     color: var(--text-dark);
