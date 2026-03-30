@@ -885,15 +885,14 @@ select.form-input {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    /* 👇 главное изменение: ширина в процентах от экрана */
-    width: min(1000px, 90vw);
+    width: min(300px, 40vw);
     height: auto;
     aspect-ratio: 1 / 1;
-    background-image: url('images/gorodets-element.png');
+    background-image: url('images/gorodets-element.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.15;
+    opacity: 0.08;
     pointer-events: none;
     z-index: 0;
 }
